@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "03521050-d05f-4c63-a4d8-0ba97d752eda",
+		"name": "DummyJson",
+		"description": "Postman aplikacija(Postman kintamieji) ->\n\nWorkspace(Globalus kintamasis) ->\n\nCollection ->\n\nEnvironment ->\n\nRequest/Script",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41079087"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "LoginAuto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// //Global\r",
+									"// console.log(pm.globals.get(\"globalus_kintamasis\"));\r",
+									"// // pm.globals.set('kintamojo_pavadinima', 'kintamojo_reiksme');\r",
+									"// //Environment\r",
+									"// console.log(pm.environment.get(\"AccessToken\"));\r",
+									"// // pm.environment.set(\"AccessToken\", jsonAtsakymas.accessToken);\r",
+									"// //jei yra zodelis get, visada zodelis set\r",
+									"// //Collection\r",
+									"// console.log(pm.collectionVariables.get('kolekcijos_kintamasis'));\r",
+									"// pm.collectionVariables.set('script_kolekcija', 'test')\r",
+									"// //Local variable - yra kintamasis, kuris yra request scripte.\r",
+									"// //Egzistuoja tik tol, kol pasibaigia request\r",
+									"\r",
+									"// pm.variables.set('lokalus_kintamasis','laikinas');\r",
+									"// console.log(pm.variables.get('lokalus_kintamasis'));\r",
+									"\r",
+									"// let laikinas = 'test';\r",
+									"\r",
+									"// //Kintamaji - isvesti(gauti/get), nustatyti(set), sukurti\r",
+									"\r",
+									"// let kintamasis = 5; //globalus scope\r",
+									"// let kazkas = 2;\r",
+									"// if(kazkas< 3) {\r",
+									"\r",
+									"//     let kintamasis = 2; // { }\r",
+									"//     console.log(kintamasis);\r",
+									"\r",
+									"// }\r",
+									"\r",
+									"\r",
+									"// let jsonAtsakymas = pm.response.json();\r",
+									"\r",
+									"// pm.environment.set(\"AccessToken\", jsonAtsakymas.accessToken);\r",
+									"// pm.environment.set('RefreshToken', jsonAtsakymas.refreshToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('AccessToken ne empty', function() {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.accessToken).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// pm.variables.set('expirationTime', '40');\r",
+									"// pm.variables.set('username', 'emilys');\r",
+									"\r",
+									"// pm.variables.set('pasikartojantisKintamasis','Lokalus')\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3Mzc0ODE3ODMsImV4cCI6MTczNzQ4MzU4M30.PKpTIBQB9n5RLHUsNA0FB8EgsuMxBhbw4bAKKRi-fqk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n    \"username\": \"{{username}}\", //lokalus\r\n    \"password\": \"{{password}}\", // ???? null/ ''/ \r\n    \"expiresInMins\": \"30\" // optional, defaults to 60\r\n}\r\n\r\n// {  \r\n    // \"username\": \"{{username}}\", //lokalus\r\n    // \"password\": \"{{password}}\", // ???? null/ ''/ \r\n    // \"expiresInMins\": \"30\" // optional, defaults to 60\r\n// }\r\n\r\n//Kas yra Cookies?",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}auth/login",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginOneTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// //Global\r",
+									"// console.log(pm.globals.get(\"globalus_kintamasis\"));\r",
+									"// // pm.globals.set('kintamojo_pavadinima', 'kintamojo_reiksme');\r",
+									"// //Environment\r",
+									"// console.log(pm.environment.get(\"AccessToken\"));\r",
+									"// // pm.environment.set(\"AccessToken\", jsonAtsakymas.accessToken);\r",
+									"// //jei yra zodelis get, visada zodelis set\r",
+									"// //Collection\r",
+									"// console.log(pm.collectionVariables.get('kolekcijos_kintamasis'));\r",
+									"// pm.collectionVariables.set('script_kolekcija', 'test')\r",
+									"// //Local variable - yra kintamasis, kuris yra request scripte.\r",
+									"// //Egzistuoja tik tol, kol pasibaigia request\r",
+									"\r",
+									"// pm.variables.set('lokalus_kintamasis','laikinas');\r",
+									"// console.log(pm.variables.get('lokalus_kintamasis'));\r",
+									"\r",
+									"// let laikinas = 'test';\r",
+									"\r",
+									"// //Kintamaji - isvesti(gauti/get), nustatyti(set), sukurti\r",
+									"\r",
+									"// let kintamasis = 5; //globalus scope\r",
+									"// let kazkas = 2;\r",
+									"// if(kazkas< 3) {\r",
+									"\r",
+									"//     let kintamasis = 2; // { }\r",
+									"//     console.log(kintamasis);\r",
+									"\r",
+									"// }\r",
+									"\r",
+									"\r",
+									"// let jsonAtsakymas = pm.response.json();\r",
+									"\r",
+									"// pm.environment.set(\"AccessToken\", jsonAtsakymas.accessToken);\r",
+									"// pm.environment.set('RefreshToken', jsonAtsakymas.refreshToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('AccessToken ne empty', function() {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.accessToken).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// pm.variables.set('expirationTime', '40');\r",
+									"// pm.variables.set('username', 'emilys');\r",
+									"// pm.variables.set('password', 'emilyspass');\r",
+									"// pm.variables.set('pasikartojantisKintamasis','Lokalus')\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3Mzc0ODE3ODMsImV4cCI6MTczNzQ4MzU4M30.PKpTIBQB9n5RLHUsNA0FB8EgsuMxBhbw4bAKKRi-fqk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n    \"username\": \"{{username}}\", //lokalus\r\n    \"password\": \"{{password}}\", // ???? null/ ''/ \r\n    \"expiresInMins\": \"30\" // optional, defaults to 60\r\n}\r\n\r\n// {  \r\n    // \"username\": \"{{username}}\", //lokalus\r\n    // \"password\": \"{{password}}\", // ???? null/ ''/ \r\n    // \"expiresInMins\": \"30\" // optional, defaults to 60\r\n// }\r\n\r\n//Kas yra Cookies?",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}auth/login",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//accept headeris\r",
+									"\r",
+									"//accept: */* - kad mes priimame bet kokia media"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}auth/me",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshSession",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJtaWNoYWVsdyIsImVtYWlsIjoibWljaGFlbC53aWxsaWFtc0B4LmR1bW15anNvbi5jb20iLCJmaXJzdE5hbWUiOiJNaWNoYWVsIiwibGFzdE5hbWUiOiJXaWxsaWFtcyIsImdlbmRlciI6Im1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL21pY2hhZWx3LzEyOCIsImlhdCI6MTczNzk2MjA4NCwiZXhwIjoxNzQwNTU0MDg0fQ.oWtbROBm7evUllXmfBDSeWQPLTNxL9GoJPThJx6x9OU\", \r\n    \"expiresInMins\": 30\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/auth/refresh",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": []
+		},
+		{
+			"name": "Carts",
+			"item": []
+		},
+		{
+			"name": "Recipes",
+			"item": []
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GetUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/users?limit=0&select=username,password",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "select",
+									"value": "username,password"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": []
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Patikrinti komentarų kiekį Post, kurio id = 46\", function () {\r",
+									"\r",
+									"// // Gautas atsakas kaip JSON\r",
+									"//     let jsonResponse = pm.response.json(); \r",
+									"    \r",
+									"//     // Patikrina, ar 'comments' property egzistuoja atsakyme\r",
+									"//     pm.expect(jsonResponse).to.have.property('comments');\r",
+									"    \r",
+									"//     //filter funkcija sitoje vietoje grazina masyva\r",
+									"//     let commentsForPost46 = jsonResponse.comments.filter(function(comment) {\r",
+									"//         return comment.postId === 4;\r",
+									"//     });\r",
+									"    \r",
+									"//     console.log(commentsForPost46)\r",
+									"\r",
+									"//     pm.expect(commentsForPost46.length).to.be.above(0); // Patikrina, ar yra bent vienas komentaras\r",
+									"//     console.log(\"Komentarų skaičius Post su id = 46: \" + commentsForPost46.length); // Išveda komentarų kiekį į konsolę\r",
+									"// });\r",
+									"\r",
+									"//  \"comments\": [\r",
+									"//         {\r",
+									"//             \"id\": 1,\r",
+									"//             \"body\": \"This is some awesome thinking!\",\r",
+									"//             \"postId\": 242,\r",
+									"//             \"likes\": 3,\r",
+									"//             \"user\": {\r",
+									"//                 \"id\": 105,\r",
+									"//                 \"username\": \"emmac\",\r",
+									"//                 \"fullName\": \"Emma Wilson\"\r",
+									"//             }\r",
+									"//         },\r",
+									"// Sąraše yra 340 elemenu. Kiekvienas elementas turi parametrą postID. postId parametras reiškia, kad tas komentaras priklauso tam postui. Surasti visus elementus, kuriu postId = 46.\r",
+									"//Algoritmas\r",
+									"//1. Gauti visus 340 elementu\r",
+									"//2. Pasideti juos i masyva\r",
+									"//3. Susikurti laikinaji kintamaji\r",
+									"//4. Su ciklu ir if pagalba i laikinaji kintamaji atrinkti masyvo elementus, kurio id = 46\r",
+									"//5. suskaiciuoti laikinojo kintamojo elementus\r",
+									"\r",
+									"//json atsakymas yra visi komentarai\r",
+									"//let masyvas = [0,1,2,...]\r",
+									"\r",
+									"pm.test('Tikrinam kiek komentaru turi postId=46', function(){\r",
+									"        let jsonAtsakymas = pm.response.json();\r",
+									"        pm.expect(jsonAtsakymas).to.have.property('comments');\r",
+									"        let komentarai = jsonAtsakymas.comments;\r",
+									"\r",
+									"        let laikinisis_kintamasis = [];\r",
+									"\r",
+									"        for (let i = 0; i< komentarai.length; i++ ) {\r",
+									"            if(komentarai[i].postId == 164) {\r",
+									"                laikinisis_kintamasis.push(komentarai[i]);\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"        pm.expect(laikinisis_kintamasis.length).to.be.above(0);\r",
+									"\r",
+									"        console.log(komentarai[0].postId);\r",
+									"        console.log(laikinisis_kintamasis);\r",
+									"        console.log(laikinisis_kintamasis.length)\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//kaip man suskaiciuoti kiek cia yra elementu?\r",
+									"//javascript yra 2 budai?\r",
+									"// let skaiciuok = 0;\r",
+									"// for (let i = 1; i <= masyvas.length; i++ ) {\r",
+									"//     skaiciuok++;\r",
+									"// } \r",
+									"// console.log(skaiciuok);\r",
+									"// console.log(masyvas.length);\r",
+									"// console.log(komentarai)\r",
+									"// console.log(komentarai.length)\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									" \r",
+									" \r",
+									" \r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/comments?limit=0",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"comments"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "TodosList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"  let jsonAtsakymas = pm.response.json();\r",
+									"        pm.expect(jsonAtsakymas).to.have.property('todos');\r",
+									"        let komentarai = jsonAtsakymas.todos;\r",
+									"\r",
+									"        let laikinisis_kintamasis = [];\r",
+									"\r",
+									"        for (let i = 0; i< komentarai.length; i++ ) {\r",
+									"            if(komentarai[i].userId == 5) {\r",
+									"                laikinisis_kintamasis.push(komentarai[i]);\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"        // pm.expect(laikinisis_kintamasis.length).to.be.above(0);\r",
+									"\r",
+									"        console.log(komentarai[0].postId);\r",
+									"        console.log(laikinisis_kintamasis);\r",
+									"        console.log(laikinisis_kintamasis.length)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/todos?limit=0",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"todos"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// pm.test(\"Content-Type is one of json, webp, jpg, or png\", function () {\r",
+					"\r",
+					"//     pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/(json|webp|jpg|png)/);\r",
+					"\r",
+					"// });\r",
+					"\r",
+					"// //3.3 200 ir 201 OK\r",
+					"// // error\r",
+					"\r",
+					"// pm.test(\"JSON error?\", function() {\r",
+					"//     pm.response.to.be.json.message(null)\r",
+					"// });\r",
+					"\r",
+					"// pm.test(\"JSON neturi 'error' elemento\", function () {\r",
+					"//     // var jsonData;\r",
+					"//     let jsonData = pm.response.json();\r",
+					"//     pm.expect(jsonData).to.not.have.property(\"message\");\r",
+					"// });\r",
+					"\r",
+					"// pm.test(\"JSON neturi 'error' elemento\", function () {\r",
+					"//     // var jsonData;\r",
+					"//     let jsonData = pm.response.json();\r",
+					"//     pm.expect(jsonData).to.not.have.property(\"error\");\r",
+					"\r",
+					"// });\r",
+					"\r",
+					"// console.log(pm.environment.get(\"AccessToken\"));\r",
+					"\r",
+					"\r",
+					" "
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "kolekcijos_kintamasis",
+			"value": "kolekcijos_reiksmes\n",
+			"type": "string"
+		},
+		{
+			"key": "script_kolekcija",
+			"value": ""
+		},
+		{
+			"key": "pasikartojantisKintamasis",
+			"value": "Collection",
+			"type": "string"
+		}
+	]
+}

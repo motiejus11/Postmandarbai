@@ -24,8 +24,7 @@ jobs:
 
       - name: Running collectgion
         run: |
-          newman run DummyJson.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/report.html --reporter-htmlextra-darkTheme > testResults/runreport1.html
-          
+          newman run DummyJson.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/report.html
       - name: output artifacts
         uses: actions/upload-artifact@v4
         with:

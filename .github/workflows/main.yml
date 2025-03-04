@@ -1,0 +1,15 @@
+name: Newman Test Run
+on:
+  push:
+    branches:
+    - main
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '22'
+      - run: npm install -g newman
+      - run: newman run DummyJson.postman_collection.json

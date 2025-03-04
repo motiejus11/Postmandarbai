@@ -23,10 +23,5 @@ jobs:
 
 
       - name: Running collectgion
-        run: |
-          newman run ./Testing/DummyJson.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/report.html
-      - name: output artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: RunReports
-          path: testResults
+        run: newman run DummyJson.postman_collection.json
+    

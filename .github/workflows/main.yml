@@ -19,7 +19,7 @@ jobs:
           npm install -g newman-reporter-html
       
       - name: Run Newman tests
-        run: scriptexamples.postman_collection.json -r html,cli
+        run: newman run scriptexamples.postman_collection.json -r html,cli
       
       - name: Upload HTML report
         uses: actions/upload-artifact@v4

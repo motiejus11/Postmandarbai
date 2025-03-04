@@ -20,7 +20,4 @@ jobs:
       
       - name: Run Newman tests
         run: newman run scriptexamples.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export testReport.html
-      
-      
-      - name: Upload HTML report
         

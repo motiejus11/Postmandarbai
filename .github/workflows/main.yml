@@ -23,5 +23,5 @@ jobs:
 
 
       - name: Running collectgion
-        run: newman run DummyJson.postman_collection.json
+        run: newman run scriptexamples.postman_collection.json
     

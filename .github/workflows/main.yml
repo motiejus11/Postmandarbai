@@ -27,7 +27,7 @@ jobs:
           newman run DummyJson.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/report.html --reporter-htmlextra-darkTheme > testResults/runreport1.html
           
       - name: output artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: RunReports
           path: testResults

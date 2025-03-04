@@ -1,31 +1,28 @@
-name: Newman Test Run
-on:
-  push:
-    branches:
-    - main
+name: Newman Tests
+
+on: [push, pull_request]
+
 jobs:
   test-api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
+      - uses: actions/checkout@v2
+      
       - name: Install Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
-          node-version: '22'
-      - name: Install newman 
+          node-version: '16.x'
+      
+      - name: Install Newman and HTML reporter
         run: |
           npm install -g newman
-          npm install -g newman-reporter-htmlextra
-
-      - name: Make Directory for test results
-        run: mkdir -p testResults
-
-
-      - name: Running collectgion
-        run: |
-          newman run scriptexamples.postman_collection.json -r htmlextra --reporter-htmlextra-export report.html
-      - name: output artifacts
-        uses: actions/upload-artifact@v4
+          npm install -g newman-reporter-html
+      
+      - name: Run Newman tests
+        run: scriptexamples.postman_collection.json -r html,cli
+      
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v2
         with:
-          name: RunReports
+          name: newman-report
+          path: newman/*.html
